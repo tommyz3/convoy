@@ -12,7 +12,7 @@ import nju.software.convoy.service.model.UserModel;
  */
 public class Model2Entity {
     public static User turn2UserEntity(UserModel u){
-        return new User(u.getPhone(), u.getPassword(), u.getDepartment(), u.getTitle(), u.getName());
+        return new User(u.getPhone(), u.getPassword(), u.getDepartment(), u.getTitle(), u.getName(), u.getTitleDes());
     }
 
     public static Attendance turn2AttendanceWithId(int id, AttendanceModel a){

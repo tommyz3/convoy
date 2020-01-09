@@ -17,6 +17,14 @@ public class UserModel {
     private String name;
     private String department;
     private int title;
-
-
+    private String titleDes;
+    private byte[] img;
+    public UserModel(String phone, String password, String department, int title, String name, String titleDes){
+        this.setPhone(phone);
+        this.setDepartment(department);
+        this.setName(name);
+        this.setTitle(title);
+        this.setTitleDes(titleDes);
+        this.setPassword(password);
+    }
 }

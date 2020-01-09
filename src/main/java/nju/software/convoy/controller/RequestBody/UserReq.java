@@ -23,6 +23,6 @@ public class UserReq {
     private String department;
     private String title;
     private String newPassword;
-
-
+    private byte[] img;
+    private String titleDes;
 }

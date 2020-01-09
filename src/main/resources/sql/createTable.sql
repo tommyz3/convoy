@@ -72,7 +72,10 @@ create table convoy.user
 	PASSWORD varchar(255) not null,
 	DEPARTMENT varchar(255) null,
 	TITLE int null,
-	NAME varchar(255) null
+	NAME varchar(255) null,
+	TITLE_DES varchar(255) null,
+	IMG blob null
 )
 ;
+
 

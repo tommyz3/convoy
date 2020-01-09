@@ -3,15 +3,9 @@ package nju.software.convoy.util;
 import lombok.extern.slf4j.Slf4j;
 import nju.software.convoy.controller.RequestBody.AttendanceReq;
 import nju.software.convoy.controller.RequestBody.UserReq;
-import nju.software.convoy.data.entity.Attendance;
 import nju.software.convoy.service.model.AttendanceModel;
 import nju.software.convoy.service.model.UserModel;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @Author: tommy_z
@@ -22,14 +16,14 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Req2Model {
     public static UserModel turn2UserModel(UserReq r) {
         if (r.getTitle() != null)
-            return new UserModel(r.getPhone(), r.getPassword(), r.getName(), r.getDepartment(), Integer.parseInt(r.getTitle()));
-        return new UserModel(r.getPhone(), r.getPassword(), r.getName(), r.getDepartment(), 0);
+            return new UserModel(r.getPhone(), r.getPassword(), r.getDepartment(), Integer.parseInt(r.getTitle()), r.getName(),  r.getTitleDes());
+        return new UserModel(r.getPhone(), r.getPassword(), r.getDepartment(), 0,  r.getName(),r.getTitleDes());
     }
 
     public static UserModel turn2UserModelWithNewPassword(UserReq r) {
         if (r.getTitle() != null)
-            return new UserModel(r.getPhone(), r.getNewPassword(), r.getName(), r.getDepartment(), Integer.parseInt(r.getTitle()));
-        return new UserModel(r.getPhone(), r.getNewPassword(), r.getName(), r.getDepartment(), 0);
+            return new UserModel(r.getPhone(), r.getNewPassword(), r.getDepartment(), Integer.parseInt(r.getTitle()), r.getName(),  r.getTitleDes());
+        return new UserModel(r.getPhone(), r.getNewPassword(), r.getDepartment(), 0,  r.getName(),r.getTitleDes());
     }
 
     public static AttendanceModel turn2AttendanceModel(AttendanceReq r) {

@@ -48,6 +48,15 @@ public class ResultFactory {
         return r;
     }
 
+    // 自定义访问失败信息
+    public static Result failed(String msg, Object data){
+        Result r = new Result();
+        r.setCode(ResultCode.FAILED.code);
+        r.setMessage(msg);
+        r.setData(data);
+        return r;
+    }
+
     // 全自定义
     public static Result customize(int code, String msg, Object data){
         Result r = new Result();

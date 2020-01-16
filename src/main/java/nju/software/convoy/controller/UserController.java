@@ -54,14 +54,14 @@ public class UserController {
         log.info("请求登录用户：" + req.toString());
         if (bindingResult.hasErrors()){
             log.warn("请求登录用户参数错误：" + bindingResult.getFieldError());
-            return ResultFactory.failed(bindingResult.getFieldError().getDefaultMessage());
+            return ResultFactory.failed(bindingResult.getFieldError().getDefaultMessage(), req);
         }
         if (userService.findByPhone(req.getPhone()) == null)
-            return ResultFactory.failed("用户未注册");
+            return ResultFactory.failed("用户未注册", req);
         boolean result = userService.login(Req2Model.turn2UserModel(req));
         if (result)
-            return ResultFactory.success("密码正确");
-        else return ResultFactory.failed("密码错误");
+            return ResultFactory.success(req);
+        else return ResultFactory.failed("密码错误", req);
     }
 
     @RequestMapping("/modPassword")
@@ -86,12 +86,12 @@ public class UserController {
         log.info("请求修改用户数据：" + req.toString());
         if (bindingResult.hasErrors()){
             log.warn("请求修改用户参数错误：" + bindingResult.getFieldError());
-            return ResultFactory.failed(bindingResult.getFieldError().getDefaultMessage());
+            return ResultFactory.failed(bindingResult.getFieldError().getDefaultMessage(), req);
         }
         UserModel user = Req2Model.turn2UserModel(req);
         boolean result = userService.save(user);
         if (result)
-            return ResultFactory.success("修改成功");
-        return ResultFactory.failed("修改失败");
+            return ResultFactory.success(userService.findByPhone(req.getPhone()));
+        return ResultFactory.failed("修改失败", userService.findByPhone(req.getPhone()));
     }
 }

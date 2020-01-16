@@ -6,6 +6,10 @@ import nju.software.convoy.controller.RequestBody.UserReq;
 import nju.software.convoy.service.model.AttendanceModel;
 import nju.software.convoy.service.model.UserModel;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 /**
  * @Author: tommy_z
@@ -29,12 +33,22 @@ public class Req2Model {
     public static AttendanceModel turn2AttendanceModel(AttendanceReq r) {
         AttendanceModel attendance = new AttendanceModel();
         // 日期格式yyyy-MM-dd hh:mm:ss
-        String date = r.getTime().substring(0, 10);
-        attendance.setAddress(r.getAddress());
+        SimpleDateFormat simpleDateFormat4Date = new SimpleDateFormat("yyyy-MM-dd");//注意月份是MM
+        SimpleDateFormat simpleDateFormat4Time = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//注意月份是MM
+        Date date = null;
+        Date time = null;
+        try {
+            date = simpleDateFormat4Date.parse(r.getTime());
+            time = simpleDateFormat4Time.parse(r.getTime());
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         attendance.setDate(date);
+        attendance.setTime(time);
+        attendance.setAddress(r.getAddress());
         attendance.setName(r.getName());
         attendance.setPhone(r.getPhone());
-        attendance.setTime(r.getTime());
         attendance.setDepartment(r.getDepartment());
         return attendance;
     }

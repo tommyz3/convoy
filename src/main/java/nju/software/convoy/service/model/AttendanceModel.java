@@ -2,6 +2,8 @@ package nju.software.convoy.service.model;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * @Author: tommy_z
  * @Date: 2020/1/7
@@ -10,9 +12,9 @@ import lombok.Data;
 public class AttendanceModel {
     private String phone;
     private String name;
-    private String time;
+    private Date time;
     private String address;
     private int num;
-    private String date;
+    private Date date;
     private String department;
 }

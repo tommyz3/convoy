@@ -7,6 +7,7 @@ import nju.software.convoy.controller.ResponseBody.ResultFactory;
 import nju.software.convoy.data.entity.User;
 import nju.software.convoy.service.UserService;
 import nju.software.convoy.service.model.UserModel;
+import nju.software.convoy.util.JwtUtil;
 import nju.software.convoy.util.Req2Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -44,8 +45,10 @@ public class UserController {
         if (userService.findByPhone(userReq.getPhone()) != null)
             return ResultFactory.failed("手机号已注册");
         boolean result = userService.add(Req2Model.turn2UserModel(userReq));
-        if (result)
-            return ResultFactory.success("注册成功");
+        if (result) {
+            String token = JwtUtil.sign(userReq.getPhone());
+            return ResultFactory.success(token);
+        }
         return ResultFactory.failed("注册失败");
     }
 
@@ -59,8 +62,10 @@ public class UserController {
         if (userService.findByPhone(req.getPhone()) == null)
             return ResultFactory.failed("用户未注册", req);
         boolean result = userService.login(Req2Model.turn2UserModel(req));
-        if (result)
-            return ResultFactory.success(req);
+        if (result) {
+            String token = JwtUtil.sign(req.getPhone());
+            return ResultFactory.success((Object) token);
+        }
         else return ResultFactory.failed("密码错误", req);
     }
 

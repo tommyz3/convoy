@@ -65,4 +65,11 @@ public class ResultFactory {
         r.setMessage(msg);
         return r;
     }
+
+    public static Result authFailed(){
+        Result r = new Result();
+        r.setCode(ResultCode.AUTH_ERROR.code);
+        r.setMessage(ResultCode.AUTH_ERROR.message);
+        return r;
+    }
 }

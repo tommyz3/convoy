@@ -1,10 +1,12 @@
 package nju.software.convoy.controller.RequestBody;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 /**
  * @Author: tommy_z
@@ -16,7 +18,8 @@ public class AttendanceReq {
     private String phone;
     private String name;
     private String address;
-    private String time;
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+    private Date time;
     @NotNull(message = "部门不能为空")
     private String department;
 }

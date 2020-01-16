@@ -33,19 +33,15 @@ public class Req2Model {
     public static AttendanceModel turn2AttendanceModel(AttendanceReq r) {
         AttendanceModel attendance = new AttendanceModel();
         // 日期格式yyyy-MM-dd hh:mm:ss
-        SimpleDateFormat simpleDateFormat4Date = new SimpleDateFormat("yyyy-MM-dd");//注意月份是MM
-        SimpleDateFormat simpleDateFormat4Time = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");//注意月份是MM
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//注意月份是MM
         Date date = null;
-        Date time = null;
         try {
-            date = simpleDateFormat4Date.parse(r.getTime());
-            time = simpleDateFormat4Time.parse(r.getTime());
-
+            date = sdf.parse(sdf.format(r.getTime()));
         } catch (ParseException e) {
             e.printStackTrace();
         }
         attendance.setDate(date);
-        attendance.setTime(time);
+        attendance.setTime(r.getTime());
         attendance.setAddress(r.getAddress());
         attendance.setName(r.getName());
         attendance.setPhone(r.getPhone());

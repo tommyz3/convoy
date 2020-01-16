@@ -2,9 +2,11 @@ package nju.software.convoy.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import nju.software.convoy.controller.RequestBody.AttendanceReq;
+import nju.software.convoy.controller.RequestBody.HolidayReq;
 import nju.software.convoy.controller.ResponseBody.Result;
 import nju.software.convoy.controller.ResponseBody.ResultFactory;
 import nju.software.convoy.data.entity.Attendance;
+import nju.software.convoy.data.entity.Holiday;
 import nju.software.convoy.service.AttendanceService;
 import nju.software.convoy.service.model.AttendanceModel;
 import nju.software.convoy.util.Req2Model;

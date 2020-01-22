@@ -19,11 +19,11 @@
     <context id="DB2Tables" targetRuntime="MyBatis3">
 
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/convoy?serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://localhost:3306/convoy?serverTimezone=Asia/Shanghai"
                         userId="root"
                         password="000">
             <!--MySQL 8.x 需要指定服务器的时区-->
-            <property name="serverTimezone" value="UTC"/>
+            <property name="serverTimezone" value="Asia/Shanghai"/>
             <!--MySQL 不支持 schema 或者 catalog 所以需要添加这个-->
             <!--参考 : http://www.mybatis.org/generator/usage/mysql.html-->
             <property name="nullCatalogMeansCurrent" value="true"/>
@@ -59,18 +59,6 @@
             <!--&lt;!&ndash; 指定列的java数据类型 &ndash;&gt;-->
             <!--&lt;!&ndash;<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" /> &ndash;&gt;-->
         <!--</table>-->
-
-        <table tableName="ATTENDANCE"
-        enableCountByExample="false" enableUpdateByExample="false"
-        enableDeleteByExample="false" enableSelectByExample="false"
-        selectByExampleQueryId="false">
-        </table>
-
-        <table tableName="ATTENDANCE_DETAIL"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
 
         <table tableName="HOLIDAY"
                enableCountByExample="false" enableUpdateByExample="false"

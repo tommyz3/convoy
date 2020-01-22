@@ -2,11 +2,14 @@ package nju.software.convoy.service.impl;
 
 import nju.software.convoy.data.dao.AttendanceDetailMapper;
 import nju.software.convoy.data.dao.AttendanceMapper;
+import nju.software.convoy.data.dao.HolidayMapper;
 import nju.software.convoy.data.entity.Attendance;
 import nju.software.convoy.data.entity.AttendanceDetail;
 import nju.software.convoy.data.entity.AttendanceKey;
+import nju.software.convoy.data.entity.Holiday;
 import nju.software.convoy.service.AttendanceService;
 import nju.software.convoy.service.model.AttendanceModel;
+import nju.software.convoy.service.model.HolidayModel;
 import nju.software.convoy.util.Model2Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +24,8 @@ public class AttendanceSeriviceImpl implements AttendanceService {
     private AttendanceMapper attendanceMapper;
     @Autowired
     private AttendanceDetailMapper detailMapper;
+    @Autowired
+    private HolidayMapper holidayMapper;
 
     @Override
     public boolean add(AttendanceModel a) {
@@ -46,4 +51,5 @@ public class AttendanceSeriviceImpl implements AttendanceService {
         Attendance update = Model2Entity.turn2AttendanceWithId(old.getId(), model);
         attendanceMapper.updateByPrimaryKey(update);
     }
+
 }

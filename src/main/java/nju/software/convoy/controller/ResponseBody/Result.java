@@ -9,6 +9,7 @@ import lombok.*;
 @Setter
 @Getter
 @NoArgsConstructor
+@ToString
 public class Result {
     private int code;
     private String message;

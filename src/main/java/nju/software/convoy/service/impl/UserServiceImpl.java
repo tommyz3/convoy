@@ -21,8 +21,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-    public User findByPhone(String phone){
-        return userMapper.selectByPrimaryKey(phone);
+    public UserModel findByPhone(String phone){
+        User user = userMapper.selectByPrimaryKey(phone);
+        return Entity2Model.entity2UserModel(user);
     }
 
     @Override

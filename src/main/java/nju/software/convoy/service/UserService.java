@@ -11,7 +11,7 @@ import java.util.List;
  * @Date: 2020/1/2
  */
 public interface UserService {
-    User findByPhone(String phone);
+    UserModel findByPhone(String phone);
     boolean add(UserModel user);
     boolean login(UserModel user);
     boolean updatePassword(UserModel user);

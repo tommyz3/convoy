@@ -30,18 +30,13 @@ public class UserController {
 
     @RequestMapping("/test")
     public Result findByPhone(String phone) {
-        User u =  userService.findByPhone(phone);
+        UserModel u =  userService.findByPhone(phone);
         return ResultFactory.success(u);
     }
 
 
     @RequestMapping("/add")
     public Result add(@Valid UserReq userReq, BindingResult bindingResult) {
-        log.info("请求添加用户：" + userReq.toString());
-        if (bindingResult.hasErrors()){
-            log.warn("添加用户请求参数错误：" + bindingResult.getFieldError());
-            return ResultFactory.failed(bindingResult.getFieldError().getDefaultMessage());
-        }
         if (userService.findByPhone(userReq.getPhone()) != null)
             return ResultFactory.failed("手机号已注册");
         boolean result = userService.add(Req2Model.turn2UserModel(userReq));
@@ -54,11 +49,6 @@ public class UserController {
 
     @RequestMapping("/login")
     public Result login(@Valid UserReq req, BindingResult bindingResult){
-        log.info("请求登录用户：" + req.toString());
-        if (bindingResult.hasErrors()){
-            log.warn("请求登录用户参数错误：" + bindingResult.getFieldError());
-            return ResultFactory.failed(bindingResult.getFieldError().getDefaultMessage(), req);
-        }
         if (userService.findByPhone(req.getPhone()) == null)
             return ResultFactory.failed("用户未注册", req);
         boolean result = userService.login(Req2Model.turn2UserModel(req));
@@ -71,11 +61,6 @@ public class UserController {
 
     @RequestMapping("/modPassword")
     public Result modPassword(@Valid UserReq req, BindingResult bindingResult){
-        log.info("请求修改密码用户：" + req.toString());
-        if (bindingResult.hasErrors()){
-            log.warn("请求登录用户参数错误：" + bindingResult.getFieldError());
-            return ResultFactory.failed(bindingResult.getFieldError().getDefaultMessage());
-        }
         if (userService.findByPhone(req.getPhone()) == null)
             return ResultFactory.failed("用户未注册");
         boolean password = userService.login(Req2Model.turn2UserModel(req));
@@ -88,11 +73,6 @@ public class UserController {
 
     @RequestMapping("/save")
     public Result save(@Valid UserReq req, BindingResult bindingResult){
-        log.info("请求修改用户数据：" + req.toString());
-        if (bindingResult.hasErrors()){
-            log.warn("请求修改用户参数错误：" + bindingResult.getFieldError());
-            return ResultFactory.failed(bindingResult.getFieldError().getDefaultMessage(), req);
-        }
         UserModel user = Req2Model.turn2UserModel(req);
         boolean result = userService.save(user);
         if (result)

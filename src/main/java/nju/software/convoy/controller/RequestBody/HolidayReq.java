@@ -1,8 +1,11 @@
 package nju.software.convoy.controller.RequestBody;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -11,15 +14,18 @@ import java.util.Date;
  */
 @Data
 public class HolidayReq {
+    @NotNull
+    @Size(max = 11, min = 11)
     private String Phone;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh-mm-ss")
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date begin;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh-mm-ss")
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date end;
-    private String approve;
     private String department;
     private String type;
     private String reason;
-    @DateTimeFormat(pattern = "yyyy-MM-dd hh-mm-ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date time;
 }

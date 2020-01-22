@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * token工具
  * @Author: tommy_z
  * @Date: 2020/1/16
  */
@@ -19,6 +20,11 @@ public class JwtUtil {
     // token私钥
     private static final String TOKEN_SECRET = "f5fsd88a2fv38v4ds8bnn33zg8gj8lyb1";
 
+    /**
+     * 签名方法
+     * @param phone
+     * @return
+     */
     public static String sign(String phone) {
         try {
             Date date = new Date(System.currentTimeMillis() + EXPIRE_TIME);
@@ -38,6 +44,11 @@ public class JwtUtil {
 
     }
 
+    /**
+     * 验证token
+     * @param token
+     * @return
+     */
     public static boolean verify(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(TOKEN_SECRET);
@@ -48,5 +59,19 @@ public class JwtUtil {
             return false;
         }
 
+    }
+
+    /**
+     * 通过token获取用户信息
+     * @param token
+     * @return
+     */
+    public static String getPhone(String token){
+        try{
+            DecodedJWT jwt = JWT.decode(token);
+            return jwt.getClaim("phone").asString();
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

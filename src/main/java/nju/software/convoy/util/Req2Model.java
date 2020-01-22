@@ -2,8 +2,12 @@ package nju.software.convoy.util;
 
 import lombok.extern.slf4j.Slf4j;
 import nju.software.convoy.controller.RequestBody.AttendanceReq;
+import nju.software.convoy.controller.RequestBody.HolidayReq;
+import nju.software.convoy.controller.RequestBody.TripReq;
 import nju.software.convoy.controller.RequestBody.UserReq;
 import nju.software.convoy.service.model.AttendanceModel;
+import nju.software.convoy.service.model.HolidayModel;
+import nju.software.convoy.service.model.TripModel;
 import nju.software.convoy.service.model.UserModel;
 
 import java.text.ParseException;
@@ -32,10 +36,11 @@ public class Req2Model {
 
     public static AttendanceModel turn2AttendanceModel(AttendanceReq r) {
         AttendanceModel attendance = new AttendanceModel();
-        // 日期格式yyyy-MM-dd hh:mm:ss
+        // 考勤打卡时间格式yyyy-MM-dd hh:mm:ss
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//注意月份是MM
         Date date = null;
         try {
+            // 获取考勤打卡日期
             date = sdf.parse(sdf.format(r.getTime()));
         } catch (ParseException e) {
             e.printStackTrace();
@@ -47,5 +52,23 @@ public class Req2Model {
         attendance.setPhone(r.getPhone());
         attendance.setDepartment(r.getDepartment());
         return attendance;
+    }
+
+    public static HolidayModel turn2HolidayModel(HolidayReq r){
+        byte defaultApprove = 0;
+        return new HolidayModel(r.getPhone(), r.getBegin(), r.getEnd(), r.getDepartment(), r.getType(), r.getReason(), r.getTime(), defaultApprove);
+    }
+
+    public static HolidayModel turn2HolidayKey(HolidayReq r){
+        HolidayModel holidayModel = new HolidayModel();
+        holidayModel.setBegin(r.getBegin());
+        holidayModel.setEnd(r.getEnd());
+        holidayModel.setPhone(r.getPhone());
+        return holidayModel;
+    }
+
+    public static TripModel turn2TripModel(TripReq t){
+        return new TripModel(t.getApprove(), t.getDepartment(), t.getAddress(), t.getReason(),t.getTime(), t.getCityFrom(),
+                t.getCityTo(), t.getTransport(), t.getPhone(), t.getBegin(), t.getEnd());
     }
 }

@@ -2,6 +2,9 @@ package nju.software.convoy.data.dao;
 
 import nju.software.convoy.data.entity.Trip;
 import nju.software.convoy.data.entity.TripKey;
+import nju.software.convoy.data.entity.UserAuthorityKey;
+
+import java.util.List;
 
 public interface TripMapper {
     /**
@@ -51,4 +54,6 @@ public interface TripMapper {
      * @mbg.generated Wed Jan 22 14:39:00 CST 2020
      */
     int updateByPrimaryKey(Trip record);
+
+    List<Trip> selectAuthority(UserAuthorityKey key);
 }

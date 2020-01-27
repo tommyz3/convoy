@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 @ToString
 @Data
 public class UserReq {
+    @NotNull
     @Size(min = 11, max = 11, message = "手机号码格式不正确")
     private String phone;
     @NotNull(message = "密码不能为空")

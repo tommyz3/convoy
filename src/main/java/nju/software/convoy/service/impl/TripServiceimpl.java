@@ -3,6 +3,7 @@ package nju.software.convoy.service.impl;
 import nju.software.convoy.data.dao.TripMapper;
 import nju.software.convoy.data.entity.Trip;
 import nju.software.convoy.data.entity.TripKey;
+import nju.software.convoy.data.entity.UserAuthorityKey;
 import nju.software.convoy.service.TripSerivice;
 import nju.software.convoy.service.model.TripModel;
 import nju.software.convoy.service.model.UserModel;
@@ -11,6 +12,7 @@ import nju.software.convoy.util.Model2Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,11 +44,19 @@ public class TripServiceimpl implements TripSerivice {
 
     @Override
     public List<TripModel> findTripWithAuthority(UserModel userModel) {
-        return null;
+        UserAuthorityKey key = Model2Entity.subAuthorityKey(userModel);
+        List<Trip> trips = tripMapper.selectAuthority(key);
+        List<TripModel> models = new ArrayList<>(trips.size());
+        for (Trip t: trips) {
+            models.add(Entity2Model.turn2TripModel(t));
+        }
+        return models;
     }
 
     @Override
     public boolean update(TripModel tripModel) {
-        return false;
+        Trip trip = Model2Entity.turn2TripEntity(tripModel);
+        int update = tripMapper.updateByPrimaryKeySelective(trip);
+        return update > 0;
     }
 }

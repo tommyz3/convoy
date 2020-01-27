@@ -1,11 +1,8 @@
 package nju.software.convoy.util;
+import java.util.Date;
 
-import nju.software.convoy.data.entity.Holiday;
-import nju.software.convoy.data.entity.Trip;
-import nju.software.convoy.data.entity.User;
-import nju.software.convoy.service.model.HolidayModel;
-import nju.software.convoy.service.model.TripModel;
-import nju.software.convoy.service.model.UserModel;
+import nju.software.convoy.data.entity.*;
+import nju.software.convoy.service.model.*;
 
 /**
  * @Author: tommy_z
@@ -24,4 +21,21 @@ public class Entity2Model {
         return new TripModel(t.getApprove(), t.getDepartment(),t.getAddress(),t.getReason(),t.getTime(),t.getCityFrom(),t.getCityTo(),
                 t.getTransport(),t.getPhone(), t.getBegin(),t.getEnd());
     }
+
+    public static AttendanceDetailModel turn2AttendanceDetailModel(AttendanceDetail a){
+        AttendanceDetailModel m = new AttendanceDetailModel();
+        m.setAddress(a.getAddress());
+        m.setTime(a.getTime());
+        return m;
+    }
+
+    public static AttendanceDetailModel turn2AttendanceDetailWithAll(AttendanceDetail a){
+        AttendanceDetailModel m = new AttendanceDetailModel();
+        m.setAddress(a.getAddress());
+        m.setTime(a.getTime());
+        m.setName(a.getName());
+        m.setPhone(a.getPhone());
+        return m;
+    }
+
 }

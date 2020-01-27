@@ -57,8 +57,6 @@ public class HolidayServiceImpl implements HolidayService {
     public boolean update(HolidayModel model){
         Holiday holiday = Model2Entity.turn2HolidayEntity(model);
         int update = holidayMapper.updateByPrimaryKeySelective(holiday);
-        if (update > 0)
-            return true;
-        return false;
+        return update > 0;
     }
 }

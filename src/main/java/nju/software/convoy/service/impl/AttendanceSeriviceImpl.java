@@ -3,16 +3,19 @@ package nju.software.convoy.service.impl;
 import nju.software.convoy.data.dao.AttendanceDetailMapper;
 import nju.software.convoy.data.dao.AttendanceMapper;
 import nju.software.convoy.data.dao.HolidayMapper;
-import nju.software.convoy.data.entity.Attendance;
-import nju.software.convoy.data.entity.AttendanceDetail;
-import nju.software.convoy.data.entity.AttendanceKey;
-import nju.software.convoy.data.entity.Holiday;
+import nju.software.convoy.data.entity.*;
 import nju.software.convoy.service.AttendanceService;
+import nju.software.convoy.service.model.AttendanceDetailModel;
 import nju.software.convoy.service.model.AttendanceModel;
 import nju.software.convoy.service.model.HolidayModel;
+import nju.software.convoy.service.model.UserModel;
+import nju.software.convoy.util.Entity2Model;
 import nju.software.convoy.util.Model2Entity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @Author: tommy_z
@@ -45,6 +48,26 @@ public class AttendanceSeriviceImpl implements AttendanceService {
         if (r > 0)
             return true;
         return false;
+    }
+
+    @Override
+    public List<AttendanceDetailModel> findAll(String phone) {
+        List<AttendanceDetail> attendanceDetails = detailMapper.selectByPhone(phone);
+        List<AttendanceDetailModel> models = new ArrayList<>(attendanceDetails.size());
+        for (AttendanceDetail a: attendanceDetails){
+            models.add(Entity2Model.turn2AttendanceDetailModel(a));
+        }
+        return models;
+    }
+
+    @Override
+    public List<AttendanceDetailModel> findWithAuthority(UserModel user) {
+        UserAuthorityKey key = Model2Entity.subAuthorityKey(user);
+        List<AttendanceDetail> details = detailMapper.selectAuthority(key);
+        List<AttendanceDetailModel> models = new ArrayList<>(details.size());
+        for (AttendanceDetail a: details)
+            models.add(Entity2Model.turn2AttendanceDetailWithAll(a));
+        return models;
     }
 
     private void updateAttendance(Attendance old, AttendanceModel model){

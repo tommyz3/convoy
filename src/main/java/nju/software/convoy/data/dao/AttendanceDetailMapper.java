@@ -1,7 +1,11 @@
 package nju.software.convoy.data.dao;
 
+import nju.software.convoy.data.entity.Attendance;
 import nju.software.convoy.data.entity.AttendanceDetail;
 import nju.software.convoy.data.entity.AttendanceDetailKey;
+import nju.software.convoy.data.entity.UserAuthorityKey;
+
+import java.util.List;
 
 public interface AttendanceDetailMapper {
     /**
@@ -51,4 +55,9 @@ public interface AttendanceDetailMapper {
      * @mbg.generated Thu Jan 16 13:28:12 CST 2020
      */
     int updateByPrimaryKey(AttendanceDetail record);
+
+    List<AttendanceDetail> selectByPhone(String phone);
+
+    List<AttendanceDetail> selectAuthority(UserAuthorityKey key);
+
 }

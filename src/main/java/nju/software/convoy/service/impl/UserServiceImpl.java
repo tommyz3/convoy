@@ -23,7 +23,9 @@ public class UserServiceImpl implements UserService {
 
     public UserModel findByPhone(String phone){
         User user = userMapper.selectByPrimaryKey(phone);
-        return Entity2Model.entity2UserModel(user);
+        if(user != null)
+            return Entity2Model.entity2UserModel(user);
+        return null;
     }
 
     @Override

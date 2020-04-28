@@ -59,17 +59,11 @@
             <!--&lt;!&ndash; 指定列的java数据类型 &ndash;&gt;-->
             <!--&lt;!&ndash;<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" /> &ndash;&gt;-->
         <!--</table>-->
-
-        <table tableName="HOLIDAY"
+        <table tableName="BUSY_CAR"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
-        </table>
-
-        <table tableName="TRIP"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>
 

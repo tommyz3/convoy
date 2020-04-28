@@ -13,3 +13,6 @@ ALTER TABLE convoy.trip MODIFY TIME TIMESTAMP;
 -- 不懂我当初为什么不加主键
 ALTER TABLE convoy.trip ADD PRIMARY KEY (PHONE, BEGIN, END);
 ALTER TABLE convoy.holiday ADD PRIMARY KEY (PHONE, BEGIN, END);
+
+-- 2020.04.28 修改用户表，添加驾照字段
+ALTER TABLE user ADD license int NULL;

@@ -176,7 +176,7 @@
     from holiday
     where PHONE in (
     select PHONE from user where DEPARTMENT = #{department,jdbcType=VARCHAR}
-    and TITLE&lt;#{title,jdbcType=INTEGER}
+    and TITLE &lt;= #{title,jdbcType=INTEGER}
     )
   </select>
 </mapper>

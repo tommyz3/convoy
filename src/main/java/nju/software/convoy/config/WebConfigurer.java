@@ -17,10 +17,11 @@ public class WebConfigurer implements WebMvcConfigurer {
 
     /**
      * 注册拦截器
+     * 对除了注册||登录的请求进行拦截
      * @param registry
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(tokenInterceptor).addPathPatterns("/**").excludePathPatterns("/user/login", "/user/add");
+//        registry.addInterceptor(tokenInterceptor).addPathPatterns("/**").excludePathPatterns("/user/login", "/user/add");
     }
 }

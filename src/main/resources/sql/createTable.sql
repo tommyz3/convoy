@@ -78,4 +78,93 @@ create table convoy.user
 )
 ;
 
+-- 2020.04.28新增
+-- 申请车辆表
+create table apply_car
+(
+	ID int auto_increment
+		primary key,
+	CAR_KIND int null,
+	START_TIME timestamp null,
+	END_TIME timestamp null,
+	START_POSITION varchar(255) null,
+	END_POSITION varchar(255) null,
+	FOLLOW varchar(255) default '' null,
+	REASON varchar(255) default '' null,
+	WHO varchar(12) null,
+	STATUS int default '0' null,
+	DRIVER varchar(12) null,
+	CAR int null
+)
+;
+
+-- 审批车辆表
+create table approval_car
+(
+	ID int auto_increment
+		primary key,
+	LEADER varchar(255) null,
+	APPLY_ID int null, -- 申请编号
+	KIND tinyint default '0' null, -- 标识是部门领导还是车队领导
+	REASON varchar(255) null,
+	STATUS tinyint default '1' null -- 1通过，0不通过
+)
+;
+
+-- 有活干的车辆表
+create table busy_car
+(
+	ID int auto_increment
+		primary key,
+	CAR int null,
+	START timestamp null,
+	END timestamp null,
+	KIND int default '0' null
+)
+;
+
+-- 有活干的司机表
+create table busy_driver
+(
+	ID int auto_increment
+		primary key,
+	DRIVER varchar(12) null,
+	START timestamp null,
+	END timestamp null,
+	LICENSE int default '0' null
+)
+;
+
+-- 车辆信息表
+create table car
+(
+	ID int auto_increment
+		primary key,
+	KIND int null,
+	NUMBER_PLATE varchar(10) null,
+	MODEL varchar(255) null,
+	PEOPLE int default '5' null,
+	COLOR varchar(50) default 'BLACK' null,
+	LOAD_WEIGHT int default '70' null,
+	FUEL int default '100' null,
+	SERVICE_START timestamp null,
+	INSPECT timestamp null,
+	INSPECT_DDL timestamp null,
+	SAFE timestamp null,
+	SAFE_DDL timestamp null
+)
+;
+
+-- 评价表
+create table evaluation
+(
+	ID int null,
+	SCORE int default '5' null,
+	MESAGE varchar(255) null
+)
+;
+
+
+
+
 

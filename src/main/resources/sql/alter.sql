@@ -16,3 +16,5 @@ ALTER TABLE convoy.holiday ADD PRIMARY KEY (PHONE, BEGIN, END);
 
 -- 2020.04.28 修改用户表，添加驾照字段
 ALTER TABLE user ADD license int NULL;
+
+ALTER TABLE user ALTER COLUMN license SET DEFAULT -1;

@@ -1,8 +1,13 @@
 package nju.software.convoy.service.impl;
 
+import nju.software.convoy.data.dao.ApplyCarMapper;
+import nju.software.convoy.data.dao.BusyDriverMapper;
 import nju.software.convoy.data.dao.UserMapper;
+import nju.software.convoy.data.entity.ApplyCar;
+import nju.software.convoy.data.entity.BusyDriver;
 import nju.software.convoy.data.entity.User;
 import nju.software.convoy.service.UserService;
+import nju.software.convoy.service.model.DriverStatusKey;
 import nju.software.convoy.service.model.UserModel;
 import nju.software.convoy.util.Entity2Model;
 import nju.software.convoy.util.Model2Entity;
@@ -10,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**

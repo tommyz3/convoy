@@ -15,4 +15,5 @@ public interface ApplyService {
     PageInfo getAll(PageReq page);
     PageInfo getMyAll(PageReq pageReq, String who);
     PageInfo getWhosAll(PageReq page, String who);
+    boolean update(ApplyCar applyCar);
 }

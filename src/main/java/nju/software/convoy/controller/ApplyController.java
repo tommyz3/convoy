@@ -60,6 +60,16 @@ public class ApplyController {
         return ResultFactory.success(pageInfo);
     }
 
+    // 车队领导审批时 确认了车辆和司机后调用
+    // 更新申请单数据，添加司机和车辆
+    @RequestMapping("/update")
+    public Result update(@Valid ApplyReq apply, BindingResult bindingResult){
+        boolean updated = applyService.update(toEntity(apply));
+        if (updated)
+            return ResultFactory.success();
+        return ResultFactory.failed();
+    }
+
     private ApplyCar toEntity(ApplyReq r){
         ApplyCar applyCar = new ApplyCar();
         applyCar.setCarKind(r.getCarKind());
@@ -70,6 +80,10 @@ public class ApplyController {
         applyCar.setReason(r.getReason());
         applyCar.setStartPosition(r.getStartPosition());
         applyCar.setStartTime(r.getStartTime());
+        if (r.getCar() != 0)
+            applyCar.setCar(r.getCar());
+        if (r.getDriver() != null && !r.getDriver().isEmpty())
+            applyCar.setDriver(r.getDriver());
         return applyCar;
     }
 }

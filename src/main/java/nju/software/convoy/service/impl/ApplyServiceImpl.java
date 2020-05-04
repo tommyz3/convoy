@@ -74,4 +74,10 @@ public class ApplyServiceImpl implements ApplyService {
         }
         return new PageInfo<>(notApprovaled);
     }
+
+    @Override
+    public boolean update(ApplyCar applyCar) {
+        int i = applyCarMapper.updateByPrimaryKeySelective(applyCar);
+        return i > 0;
+    }
 }

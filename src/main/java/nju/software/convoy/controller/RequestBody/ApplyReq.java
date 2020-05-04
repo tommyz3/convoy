@@ -30,4 +30,7 @@ public class ApplyReq {
     private String reason;
     @NotBlank(message = "申请人不能为空")
     private String who;
+    // 添加时为空
+    private Integer car;
+    private String driver;
 }

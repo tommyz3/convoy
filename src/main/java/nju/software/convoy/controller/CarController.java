@@ -46,7 +46,7 @@ public class CarController {
     }
 
     // 获取推荐
-    // 暂定接口，细节需要进一步修改
+    // 细节需要进一步修改,可以调用
     @RequestMapping("/recommend")
     public Result recommend(@RequestParam(value = "applyID")int applyID) {
         List<Car> cars = carService.findByCondition(applyID);

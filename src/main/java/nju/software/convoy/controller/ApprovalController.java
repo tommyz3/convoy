@@ -47,8 +47,6 @@ public class ApprovalController {
         return ResultFactory.success(list);
     }
 
-
-
     private ApprovalCar toEntity(ApprovalReq r){
         ApprovalCar a = new ApprovalCar();
         a.setApplyId(r.getApplyID());

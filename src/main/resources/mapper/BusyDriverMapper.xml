@@ -142,10 +142,10 @@
     from busy_driver
     where DRIVER = #{id,jdbcType=VARCHAR}
     and (
-    (START_TIME &gt= #{start,jdbcType=TIMESTAMP}
-    and START_TIME &lt;= #{end,jdbcType=TIMESTAMP})
-    or ((END_TIME &gt= #{start,jdbcType=TIMESTAMP}
-    and END_TIME &lt;= #{end,jdbcType=TIMESTAMP})
+    (START &gt;= #{start,jdbcType=TIMESTAMP}
+    and START &lt;= #{end,jdbcType=TIMESTAMP})
+    or (END &gt;= #{start,jdbcType=TIMESTAMP}
+    and END &lt;= #{end,jdbcType=TIMESTAMP})
     )
   </select>
 </mapper>

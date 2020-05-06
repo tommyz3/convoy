@@ -144,10 +144,11 @@
     from busy_car
     where CAR = #{id,jdbcType=INTEGER}
     and (
-    (START_TIME &gt= #{start,jdbcType=TIMESTAMP}
-      and START_TIME &lt;= #{end,jdbcType=TIMESTAMP})
-    or ((END_TIME &gt= #{start,jdbcType=TIMESTAMP}
-      and END_TIME &lt;= #{end,jdbcType=TIMESTAMP})
+    (START_TIME &gt;= #{start,jdbcType=TIMESTAMP}
+    and START_TIME &lt;= #{end,jdbcType=TIMESTAMP})
+    or ((END_TIME &gt;= #{start,jdbcType=TIMESTAMP}
+    and END_TIME &lt;= #{end,jdbcType=TIMESTAMP})
+    )
     )
   </select>
 </mapper>

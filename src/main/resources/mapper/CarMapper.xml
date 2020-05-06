@@ -236,7 +236,7 @@
     <include refid="Base_Column_List" />
     from car
     where KIND = #{kind,jdbcType=INTEGER}
-    and PEOPLE = #{people,jdbcType=INTEGER}
+    and PEOPLE &gt;= #{people,jdbcType=INTEGER}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select

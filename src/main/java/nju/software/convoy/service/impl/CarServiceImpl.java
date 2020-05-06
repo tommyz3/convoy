@@ -66,7 +66,7 @@ public class CarServiceImpl implements CarService {
         // 从符合条件的车中找出空闲车辆
         List<Car> cars = new ArrayList<>();
         Date start = apply.getStartTime(), end = apply.getEndTime();
-        for (int i = 0; i < carBackup.size() || cars.size() < 5; i++) {
+        for (int i = 0; i < carBackup.size() && cars.size() < 5; i++) {
             CarStatusKey key = new CarStatusKey(carBackup.get(i).getId(), start, end);
             List<BusyCar> busyCars = busyCarMapper.selectBusy(key);
             if (busyCars == null || busyCars.size() == 0)

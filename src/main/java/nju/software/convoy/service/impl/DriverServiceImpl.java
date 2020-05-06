@@ -53,12 +53,15 @@ public class DriverServiceImpl implements DriverService {
                 int j = 0;
                 // 求当前司机距离任务运行时间段的最小差
                 for (; j < curBusy.size(); j++) {
-                    long busyStart = curBusy.get(i).getStart().getTime();
-                    long busyEnd = curBusy.get(i).getEnd().getTime();
-                    long diff = 0;
-                    if (busyEnd < endLong)
-                        diff = Math.abs(endLong - busyEnd);
-                    else diff = Math.abs(busyStart - startLong);
+                    Date busyStart = curBusy.get(j).getStart();
+                    Date busyEnd = curBusy.get(j).getEnd();
+                    // 计算时间差
+                    long diff;
+                    // 发生在派车单要求时间之前
+                    if (busyEnd.before(start))
+                        diff = Math.abs(startLong - busyEnd.getTime());
+                    else // 发生在派车单要求时间之后
+                        diff = Math.abs(busyStart.getTime() - endLong);
                     minDiff = minDiff < diff? minDiff : diff;
                 }
                 j = drivers.size() - 1;
@@ -69,9 +72,13 @@ public class DriverServiceImpl implements DriverService {
                         break;
                     }
                 }
+                if (j < 0){
+                    j = 0;
+                    diffs.add(0, minDiff);
+                }
                 drivers.add(j, userMapper.selectByPrimaryKey(cur));
             }
         }
-        return drivers.subList(0, 5);
+        return drivers.size() > 5? drivers.subList(0, 5): drivers;
     }
 }
